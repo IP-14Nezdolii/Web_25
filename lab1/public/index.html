@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket Чат</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+    #users {
+      width: 200px;
+      background: #2c3e50;
+      color: white;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    #users h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    #users ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #users li {
+      padding: 5px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Контент чату */
+    #chatContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    #modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #modalContent {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    #chat {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      overflow-y: auto;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 60%;
+    }
+
+    button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    #joinBtn {
+      background: #27ae60;
+      color: white;
+    }
+    #joinBtn:hover {
+      background: #2ecc71;
+    }
+
+    #sendBtn {
+      background: #2980b9;
+      color: white;
+    }
+    #sendBtn:hover {
+      background: #3498db;
+    }
+  </style>
+</head>
+<body>
+  <div id="users">
+    <h3>Users</h3>
+    <ul id="userList"></ul>
+  </div>
+
+  <div id="chatContainer">
+    <div id="modal">
+      <div id="modalContent">
+        <h3>Введіть дані</h3>
+        <input id="nameInput" type="text" placeholder="Name"><br><br>
+        <input id="roomInput" type="text" placeholder="Room name"><br><br>
+        <button id="joinBtn">Увійти</button>
+      </div>
+    </div>
+
+    <h2 id="roomTitle">Chat</h2>
+    <div id="chat"></div>
+
+    <div>
+      <input id="msgInput" type="text" placeholder="Message...">
+      <button id="sendBtn">Input</button>
+    </div>
+  </div>
+
+  <script>  
+    const msgTypes = {
+      JOIN: 0,
+      MESSAGE: 1,
+      ID: 2,
+    };
+
+    let user = "anonymous";
+    let room = "default";
+    let users = [];
+    let id = null;
+
+    document.getElementById("joinBtn").onclick = () => {
+      const socket = new WebSocket(`ws://${location.host}`);
+
+      socket.onmessage = async (event) => {
+        const msg = JSON.parse(event.data);
+
+        switch (msg.msg_type) {
+          case msgTypes.MESSAGE: {
+            const chat = document.getElementById("chat");
+            const name = msg.id === id ? "You" : msg.user;
+
+            chat.innerHTML += `<p><b>${name}:</b> ${msg.text}</p>`;
+            chat.scrollTop = chat.scrollHeight;
+            break;
+          };
+
+          case msgTypes.ID: {
+              id = msg.id;
+              updateUserList();
+              break;
+          };
+
+          case msgTypes.JOIN: {
+            users = msg.users;
+            updateUserList();
+            break;
+          };
+        }
+      };
+      
+      socket.onopen = () => {
+        const nameVal = document.getElementById("nameInput").value.trim();
+        const roomVal = document.getElementById("roomInput").value.trim();
+
+        user = nameVal !== "" ? nameVal : user;
+        room = roomVal !== "" ? roomVal : room;
+
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("roomTitle").textContent = `Room: ${room}`;
+
+        socket.send(JSON.stringify({
+          msg_type: msgTypes.JOIN,
+          room: room,
+          user: user,
+        }));
+      };
+
+      document.getElementById("sendBtn").onclick = () => {
+        const input = document.getElementById("msgInput");
+        const message = {
+          msg_type: msgTypes.MESSAGE,
+          text: input.value,
+        };
+        if (input.value.trim() !== "") {
+          socket.send(JSON.stringify(message));
+        }
+        input.value = "";
+      };
+
+      function updateUserList() {
+        if (id) {
+          const ul = document.getElementById("userList");
+          ul.innerHTML = "";
+          users.forEach(u => {
+            const li = document.createElement("li");
+            li.textContent = u.id === id ? `You(${u.name})` : u.name;
+            ul.appendChild(li);
+          });
+        }
+      }
+    }
+  </script>
+</body>
+</html>
