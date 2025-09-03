@@ -48,7 +48,7 @@ export function doServer(wss, ws, rooms) {
         if (rooms.has(msg.room)) {
             room = rooms.get(msg.room);
         } else {
-            room = new ServerRoom(msg.room);
+            room = new Room(msg.room);
             rooms.set(msg.room, room);
         }
 
@@ -94,7 +94,7 @@ export function doServer(wss, ws, rooms) {
     }
 };
 
-class ServerRoom {
+class Room {
     constructor(name) {
         this.name = name;
         this.persons = new Set();
