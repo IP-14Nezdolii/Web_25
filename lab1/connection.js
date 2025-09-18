@@ -37,7 +37,7 @@ export function doServer(wss, ws, rooms) {
 
     ws.on("close", () => {
         quitRoom();
-        console.log("❌ Connection closed");
+        console.log("Connection closed");
     });
 
     function join(msg) {

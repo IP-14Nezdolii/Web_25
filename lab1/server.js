@@ -33,7 +33,7 @@ wss.on("connection", (ws) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`✅ Server page: http://localhost:${PORT}/page`);
+    console.log(`Server page: http://localhost:${PORT}/page`);
 });
 
 
