@@ -202,7 +202,7 @@
           ul.innerHTML = "";
           users.forEach(u => {
             const li = document.createElement("li");
-            li.textContent = u.id === id ? `You(${u.name})` : u.name;
+            li.textContent = u.id === id ? `${u.name}(You)` : u.name;
             ul.appendChild(li);
           });
         }
