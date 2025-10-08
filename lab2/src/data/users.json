@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "вцvlad",
+    "password": "$2b$10$YTqqra8o/woQTGUo2utfV.aQQVZmzfa.Wlm0EikT4h2I4jKFVesRy",
+    "role": "admin",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1OTkxNDAwMywiZXhwIjoxNzU5OTE3NjAzfQ.kevh6yNDxNO9oZniX4VD1iSahRBUIbwhROuoJxrUEus"
+  },
+  {
+    "id": 2,
+    "username": "vlad",
+    "password": "$2b$10$R/xOjmjTEayMXQQOzPpReuzMWm5AY5pHst0iWeQJC9ulkCjfwqh56",
+    "role": "user",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU5OTE0NzE1LCJleHAiOjE3NTk5MTgzMTV9.xOxLQH3S_BXCdGW1E8vfTL0cJFzMbQqxgm6stn8Tjs8"
+  }
+]
