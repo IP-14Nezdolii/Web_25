@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "username": "вцvlad",
-    "password": "$2b$10$YTqqra8o/woQTGUo2utfV.aQQVZmzfa.Wlm0EikT4h2I4jKFVesRy",
-    "role": "admin",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1OTkxNDAwMywiZXhwIjoxNzU5OTE3NjAzfQ.kevh6yNDxNO9oZniX4VD1iSahRBUIbwhROuoJxrUEus"
+    "username": "vlad",
+    "password": "$2b$10$Tk3lGSaJT3CSZ1p1fs0YH.BltkpfcneOU1Hlx40OzS1KVYfm5gu8a",
+    "role": "user",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU5OTI2MjQ5LCJleHAiOjE3NTk5Mjk4NDl9.shhZpe6lgvyFIfLPchQb4qWmWFtO7oGCcbYj_wd5E44"
   },
   {
     "id": 2,
-    "username": "vlad",
-    "password": "$2b$10$R/xOjmjTEayMXQQOzPpReuzMWm5AY5pHst0iWeQJC9ulkCjfwqh56",
-    "role": "user",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU5OTE0NzE1LCJleHAiOjE3NTk5MTgzMTV9.xOxLQH3S_BXCdGW1E8vfTL0cJFzMbQqxgm6stn8Tjs8"
+    "username": "vlad1",
+    "password": "$2b$10$rDa/AmynZh.aayyRPz0V9OYUeTK.bCGCwS06SwqrVmOPzrJLw8UV6",
+    "role": "admin",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1OTkyNjI5NywiZXhwIjoxNzU5OTI5ODk3fQ.d3WSwFdG33JtMxjwlxhdNNvuGk241hLs-82qdJ7FwP0"
   }
 ]
